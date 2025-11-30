@@ -1,8 +1,12 @@
-To install tmplr using the official tap, run:
+To install **tmplr** using the official tap, run:
 
+```sh
 brew tap open-s4c/tap
 brew install tmplr
+```
 
-After installation, you can verify it with:
+After installation, verify it with:
 
+```sh
 tmplr -V
+```
