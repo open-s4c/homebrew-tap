@@ -2,13 +2,11 @@ class Vatomic < Formula
   desc "vatomic is a header library of atomics operations, supporting mainstream architectures: ARMv7, ARMv8 (AArch32 and AArch64), RISC-V, and x86_64."
   homepage "https://github.com/open-s4c/vatomic"
   url "https://github.com/open-s4c/vatomic/archive/refs/tags/v2.3.1.tar.gz"
-  sha256 "c48bb8c2c4b86b7c4a6d14038cc08e57c11fb14211f5cbb165c74b0406c499a9"
+  sha256 "3fac5ac41cee69528e7123525fff3bc2cb4c9fd9a31169f4b18b8622765aca6d"
   license "MIT"
 
   def install
-    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
-    system "cmake", "--build", "build"
-    system "cmake", "--install", "build"
+    include.install Dir["include/*"]
   end
 
   test do
@@ -19,9 +17,9 @@ class Vatomic < Formula
       vatomic32_t count;
 
       int main() {
-          vatomic_inc(&count);
-          printf("count: %u\\n", vatomic_read(&count));
-          return 0;
+        vatomic_inc(&count);
+        printf("count: %u\\n", vatomic_read(&count));
+        return 0;
       }
     EOS
 
