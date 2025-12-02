@@ -18,7 +18,7 @@ class Vatomic < Formula
 
       int main() {
         vatomic_inc(&count);
-        printf("count: %u\n", vatomic_read(&count));
+        printf("count: %u\\n", vatomic_read(&count));
         return 0;
       }
     EOS
