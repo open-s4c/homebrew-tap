@@ -1,0 +1,25 @@
+name: Homebrew CI
+
+on:
+  push:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        formula: [vatomic, tmplr]
+    runs-on: macos-15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: brew update
+
+      - name: Tap this repo
+        run: brew tap open-s4c/tap "$PWD"
+
+      - name: Build formula
+        run: brew install --build-from-source open-s4c/tap/${{ matrix.formula }}
+
+      - name: Test formula
+        run: brew test open-s4c/tap/${{ matrix.formula }}
