@@ -1,12 +1,20 @@
 class Vatomic < Formula
   desc "vatomic is a header library of atomics operations, supporting ARM, RISC-V, x86_64"
   homepage "https://github.com/open-s4c/vatomic"
-  url "https://github.com/open-s4c/vatomic/archive/refs/tags/v2.3.1.tar.gz"
-  sha256 "c48bb8c2c4b86b7c4a6d14038cc08e57c11fb14211f5cbb165c74b0406c499a9"
+  url "https://github.com/open-s4c/vatomic/archive/refs/tags/v2.4.0.tar.gz"
+  sha256 "54c2ef05123a5d2f12f9638971f1085e7be080aed86cc3d93f76c436f2a1210a"
   license "MIT"
 
+  depends_on "cmake" => :build
+
   def install
-    include.install Dir["include/*"]
+    cmake_args = std_cmake_args + [
+      "-DBUILD_TESTING=OFF"
+    ]
+
+    system "cmake", "-S", ".", "-B", "build", *cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do
@@ -24,5 +32,8 @@ class Vatomic < Formula
     EOS
 
     system ENV.cc, "test.c", "-I#{include}"
+
+    manpages = Dir[Formula["vatomic"].share/"man/**/vatomic*"]
+    assert !manpages.empty?, "vatomic manpages were not installed"
   end
 end
