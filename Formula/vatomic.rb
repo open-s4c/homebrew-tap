@@ -1,8 +1,8 @@
 class Vatomic < Formula
   desc "vatomic is a header library of atomics operations, supporting ARM, RISC-V, x86_64"
   homepage "https://github.com/open-s4c/vatomic"
-  url "https://github.com/open-s4c/vatomic/archive/refs/tags/v2.4.0.tar.gz"
-  sha256 "54c2ef05123a5d2f12f9638971f1085e7be080aed86cc3d93f76c436f2a1210a"
+  url "https://github.com/open-s4c/vatomic/archive/refs/tags/v2.4.1.tar.gz"
+  sha256 "3af8913059bf52c9d269e4a9cb11b81a82c02ea6547946a11b8fb8f3a5c9d10e"
   license "MIT"
 
   depends_on "cmake" => :build
