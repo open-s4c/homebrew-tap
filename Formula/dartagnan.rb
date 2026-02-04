@@ -25,11 +25,14 @@ class Dartagnan < Formula
     libexec.install Dir["dartagnan/target/libs/*.jar"]
     libexec.install Dir["dartagnan/target/libs/*.dylib"]
     
+    # Install pom.xml for version information
+    libexec.install "dartagnan/pom.xml"
+    
     # Create wrapper script
     (bin/"dartagnan").write <<~EOS
       #!/bin/bash
       export JAVA_HOME="#{Formula["openjdk@17"].opt_prefix}"
-      exec "${JAVA_HOME}/bin/java" -cp "#{libexec}/dartagnan.jar:#{libexec}/*" com.dat3m.dartagnan.Dartagnan "$@"
+      exec "${JAVA_HOME}/bin/java" -Duser.home="#{libexec}" -cp "#{libexec}/dartagnan.jar:#{libexec}/*" com.dat3m.dartagnan.Dartagnan "$@"
     EOS
   end
 
