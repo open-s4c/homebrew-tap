@@ -25,6 +25,10 @@ class Dartagnan < Formula
     (libexec/"libs").install Dir["dartagnan/target/libs/*.jar"]
     (libexec/"libs").install Dir["dartagnan/target/libs/*.dylib"]
 
+    # Install cat files (memory models) and include files (C headers)
+    (libexec/"cat").install Dir["cat/*"]
+    (libexec/"include").install Dir["include/*"]
+
     # Install upstream script
     bin.install "scripts/dartagnan" => "dartagnan.original"
 
